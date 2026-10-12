@@ -1,0 +1,22 @@
+<!-- Al pulsar en el fondo oscuro se cierra el visor -->
+<div class="fondo" (click)="cerrar.emit()">
+
+  <!-- stopPropagation: si se pulsa dentro de la ventana, no se cierra -->
+  <div class="ventana" (click)="$event.stopPropagation()">
+
+    <button type="button" class="boton cerrar" (click)="cerrar.emit()">✕</button>
+
+    <div class="imagen">
+      <button type="button" class="boton flecha izquierda" (click)="anterior.emit()">‹</button>
+      <img [src]="'imagenes/' + foto.archivo" [alt]="foto.titulo">
+      <button type="button" class="boton flecha derecha" (click)="siguiente.emit()">›</button>
+    </div>
+
+    <div class="texto">
+      <p class="posicion">{{ posicion }} / {{ total }} · {{ foto.categoria }}</p>
+      <h2>{{ foto.titulo }}</h2>
+      <p>{{ foto.descripcion }}</p>
+      <p class="autor">Autor: {{ foto.autor }}</p>
+    </div>
+  </div>
+</div>

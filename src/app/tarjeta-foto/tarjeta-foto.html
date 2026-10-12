@@ -1,0 +1,15 @@
+<article class="tarjeta">
+  <button type="button" class="marco" (click)="abrir.emit(foto)">
+    <img [src]="'imagenes/' + foto.archivo" [alt]="foto.titulo">
+  </button>
+
+  <div class="info">
+    <div>
+      <h2>{{ foto.titulo }}</h2>
+      <span class="etiqueta" [ngClass]="claseCategoria()">{{ foto.categoria }}</span>
+    </div>
+    <button type="button" class="corazon" [class.activo]="foto.favorita" (click)="favorita.emit(foto)">
+      ♥
+    </button>
+  </div>
+</article>

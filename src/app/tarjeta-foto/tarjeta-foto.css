@@ -1,0 +1,87 @@
+.tarjeta {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* El botón que contiene la imagen */
+.marco {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: #000;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.marco img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.marco:hover img {
+  transform: scale(1.08);
+}
+
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+}
+
+h2 {
+  margin: 0 0 4px;
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  font-weight: normal;
+}
+
+/* Etiqueta de la categoría, con un color para cada una */
+.etiqueta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.espacio { color: #8fb3ff; }
+.ciencia { color: #8fe3b9; }
+.cotidiana { color: #f2c27b; }
+.naturaleza { color: #e79bbd; }
+
+.corazon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texto-suave);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.corazon:hover {
+  transform: scale(1.1);
+}
+
+.corazon.activo {
+  color: #ff5c7a;
+  border-color: #ff5c7a;
+}

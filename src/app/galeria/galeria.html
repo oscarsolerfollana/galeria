@@ -1,0 +1,61 @@
+<header class="cabecera">
+  <p class="antetitulo">Proyecto con Angular</p>
+  <h1>Galería de imágenes</h1>
+  <p class="subtitulo">Una pequeña colección de fotos del espacio, la ciencia y el día a día. Pulsa sobre cualquier foto para verla en grande.</p>
+</header>
+
+<main class="contenido">
+
+  <!-- Filtros por categoría -->
+  <div class="barra">
+    <div class="filtros">
+      @for (categoria of categorias; track categoria) {
+        <button
+          type="button"
+          class="filtro"
+          [class.activo]="categoria === categoriaElegida"
+          (click)="elegirCategoria(categoria)">
+          {{ categoria }}
+        </button>
+      }
+    </div>
+
+    <button
+      type="button"
+      class="filtro favoritas"
+      [class.activo]="soloFavoritas"
+      (click)="cambiarSoloFavoritas()">
+      ♥ Favoritas ({{ contarFavoritas() }})
+    </button>
+  </div>
+
+  <p class="contador">Mostrando {{ fotosVisibles().length }} de {{ fotos.length }} fotos</p>
+
+  <!-- Rejilla de fotos: un componente tarjeta por cada foto -->
+  <section class="rejilla">
+    @for (foto of fotosVisibles(); track foto.id) {
+      <app-tarjeta-foto
+        [foto]="foto"
+        (abrir)="abrir($event)"
+        (favorita)="marcarFavorita($event)" />
+    } @empty {
+      <p class="vacio">No hay fotos con este filtro. Prueba a marcar alguna como favorita.</p>
+    }
+  </section>
+</main>
+
+<!-- Visor de la foto ampliada -->
+@if (fotoAbierta) {
+  <app-visor
+    [foto]="fotoAbierta"
+    [posicion]="posicionActual() + 1"
+    [total]="fotosVisibles().length"
+    (cerrar)="cerrar()"
+    (siguiente)="siguiente()"
+    (anterior)="anterior()" />
+}
+
+<footer class="pie">
+  <p>Galería hecha con Angular · Actividad 2 de Desarrollo de Aplicaciones en Red</p>
+  <p>Las imágenes son de dominio público o tienen licencia libre; el autor de cada una aparece al ampliarla.</p>
+</footer>
